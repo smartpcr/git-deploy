@@ -85,7 +85,7 @@ spec:
 ---
 apiVersion: v1
 data:
-  admin-password: RFNTdlZ4cm9zeFZXeUJIWFFYZW14ZzJ5NGtzUThRaEduRUJ5RUNoNA==
+  admin-password: b2Q2eHY3RnVJMVpwSUpSOW9Wc01JbzdLbmxvTkd6QWdWeElKaUh0Tg==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -210,7 +210,7 @@ spec:
   resources:
     requests:
       storage: 4Gi
-  storageClassName: managed-premium
+  storageClassName: default
 
 ---
 apiVersion: v1
@@ -447,7 +447,7 @@ spec:
         checksum/config: d193c197a676682516036c29a5c9c01c6a35f59c2a3730c712105908efb6d841
         checksum/dashboards-json-config: e64f8ab57c728dce2a2291a12f3a2540c082cb1fe3293db5dcf861f161566a29
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 161678f89817ab5793777a5a62288ff53726a41fa284f45a3713b3a72b49b82a
+        checksum/secret: 7faf16b4cd0d3487e652e8dde3e931ec5a40c6c5a0eebc1ca682750bec43dc82
       labels:
         app: grafana
         release: grafana

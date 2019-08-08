@@ -1,0 +1,18 @@
+subcomponents:
+  cloud-native:
+    subcomponents:
+      kibana:
+        config:
+          dnamespace: logging
+      elasticsearch:
+        config:
+          data:
+            persistence:
+              storageClass: managed-premium
+          dnamespace: logging
+          master:
+            persistence:
+              storageClass: managed-premium
+      fluentd:
+        config:
+          dnamespace: logging
