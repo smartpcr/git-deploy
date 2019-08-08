@@ -1,9 +1,0 @@
-name: hdl
-type: component
-subcomponents:
-- name: cloud-native
-  type: component
-  source: https://github.com/microsoft/fabrikate-definitions
-  method: git
-  path: definitions/fabrikate-cloud-native
-  branch: master
