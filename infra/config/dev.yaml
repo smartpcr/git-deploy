@@ -1,18 +1,15 @@
+config:
 subcomponents:
   cloud-native:
     subcomponents:
-      kibana:
-        config:
-          dnamespace: logging
-      elasticsearch:
-        config:
-          data:
-            persistence:
-              storageClass: managed-premium
-          dnamespace: logging
-          master:
-            persistence:
-              storageClass: managed-premium
-      fluentd:
-        config:
-          dnamespace: logging
+      elasticsearch-fluentd-kibana:
+        subcomponents:
+          elasticsearch:
+            config:
+              client:
+                resources:
+                  limits:
+                    memory: "1024Mi"
+                  requests:
+                    cpu: 25m
+                    memory: 256Mi
