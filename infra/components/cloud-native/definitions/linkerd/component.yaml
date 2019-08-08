@@ -1,0 +1,15 @@
+name: fabrikate-linkerd
+generator: static # Deprecated in fabrikate v1.0.0
+type: static # Replaces `generator` in fabrikate v1.0.0
+path: "./manifests"
+subcomponents:
+  - name: linkerd
+    generator: static # Deprecated in fabrikate v1.0.0
+    type: static # Replaces `generator` in fabrikate v1.0.0
+    path: "./manifests"
+    hooks:
+      before-install:
+        - curl -sL https://run.linkerd.io/install | sh
+        - ~/.linkerd2/bin/linkerd install --ignore-cluster > manifests/linkerd.yaml
+      after-install:
+        - rm -r ~/.linkerd2/bin

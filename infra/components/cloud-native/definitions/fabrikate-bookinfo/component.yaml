@@ -1,0 +1,4 @@
+name: bookinfo
+generator: helm # Deprecated in fabrikate v1.0.0
+type: helm # Replaces `generator` in fabrikate v1.0.0
+path: ./charts/bookinfo
