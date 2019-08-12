@@ -34,11 +34,11 @@ kind: ConfigMap
 metadata:
   labels:
     app: elasticsearch-curator
-    chart: elasticsearch-curator-1.5.0
+    chart: elasticsearch-curator-2.0.0
     heritage: Tiller
     release: elasticsearch-curator
   name: elasticsearch-curator-config
-  namespace: elasticsearch
+  namespace: logging
 
 ---
 apiVersion: batch/v1beta1
@@ -46,11 +46,11 @@ kind: CronJob
 metadata:
   labels:
     app: elasticsearch-curator
-    chart: elasticsearch-curator-1.5.0
+    chart: elasticsearch-curator-2.0.0
     heritage: Tiller
     release: elasticsearch-curator
   name: elasticsearch-curator
-  namespace: elasticsearch
+  namespace: logging
 spec:
   jobTemplate:
     metadata:
@@ -70,9 +70,9 @@ spec:
             - /etc/es-curator/config.yml
             - /etc/es-curator/action_file.yml
             command:
-            - curator
+            - /curator/curator
             env: null
-            image: quay.io/pires/docker-elasticsearch-curator:5.5.4
+            image: untergeek/curator:5.7.6
             imagePullPolicy: IfNotPresent
             name: elasticsearch-curator
             resources: {}
