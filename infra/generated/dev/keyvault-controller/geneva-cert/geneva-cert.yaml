@@ -1,0 +1,24 @@
+---
+# Source: chart/templates/geneva-cert-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: geneva
+
+---
+# Source: chart/templates/azurekeyvaultsecret.yaml
+apiVersion: spv.no/v1alpha1
+kind: AzureKeyVaultSecret
+metadata:
+  name: geneva-certificate
+  namespace: geneva
+spec:
+  vault:
+    name: compes-bedrock-kv
+    object:
+      name: Geneva-Certificate-Managed
+      type: certificate
+  output:
+    secret:
+      name: geneva-certificate
+      type: kubernetes.io/tls
