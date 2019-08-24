@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: product-catalog-web
-        image: "xiaodolibedrockacr.azurecr.io/product-catalog-web:373647"
+        image: "xiaodolibedrockacr.azurecr.io/product-catalog-web:373647a"
         resources:
           requests:
             memory: "200Mi"
