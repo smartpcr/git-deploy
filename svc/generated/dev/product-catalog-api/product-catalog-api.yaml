@@ -23,6 +23,7 @@ metadata:
   name: product-catalog-api
   labels:
     app: product-catalog-api
+    aadpodidbinding: xiaodoli-bedrock-kv-reader
   annotations:
     flux.weave.works/automated: "true"
     flux.weave.works/tag.k8s-mon: "glob:master-*"
@@ -31,6 +32,7 @@ spec:
   selector:
     matchLabels:
       app: product-catalog-api
+      aadpodidbinding: xiaodoli-bedrock-kv-reader
   template:
     metadata:
       labels:
@@ -68,7 +70,7 @@ spec:
             timeoutSeconds: 10
           env:
             - name: "ASPNETCORE_ENVIRONMENT"
-              value: "Integration"
+              value: "Development"
             - name: "TENANT"
               value: ""
             - name: "ROLE"
@@ -95,10 +97,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "product-catalog-api-space-westus2.1es.io"
-    secretName: "sslcert-1es-io"
+    - "product-catalog-api-space-westus2.aks.run"
+    secretName: "sslcert-aks-run"
   rules:
-  - host: "product-catalog-api-space-westus2.1es.io"
+  - host: "product-catalog-api-space-westus2.aks.run"
     http:
       paths:
       - path: "/"
