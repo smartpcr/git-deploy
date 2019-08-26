@@ -23,11 +23,16 @@ metadata:
   name: product-catalog-api
   labels:
     app: product-catalog-api
+    aadpodidbinding: xiaodoli-bedrock-kv-reader
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.k8s-mon: "glob:master-*"
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: product-catalog-api
+      aadpodidbinding: xiaodoli-bedrock-kv-reader
   template:
     metadata:
       labels:
@@ -35,7 +40,7 @@ spec:
     spec:
       containers:
         - name: product-catalog-api
-          image: "oneesdevacr.azurecr.io/1es/product-catalog-api:201908081234"
+          image: "sacebedrockacr.azurecr.io/product-catalog-api:370656"
           resources:
             requests:
               memory: "200Mi"
@@ -66,10 +71,12 @@ spec:
           env:
             - name: "ASPNETCORE_ENVIRONMENT"
               value: "Integration"
-            - name: "tenant"
-              value: "onees-dev"
-            - name: "role"
-              value: "Integration"
+            - name: "TENANT"
+              value: "onees"
+            - name: "ROLE"
+              value: "product-catalog-api"
+            - name: DEPLOYMENT_UNIT
+              value: "sace-bedrock-kv"
           ports:
           - containerPort: 6001
             protocol: TCP
@@ -92,10 +99,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "product-catalog-api-space-westus2.xiaodong.world"
-    secretName: "sslcert-dev-xiaodong-world"
+    - "product-catalog-api-space-westus2.aks.run"
+    secretName: "sslcert-aks-run"
   rules:
-  - host: "product-catalog-api-space-westus2.xiaodong.world"
+  - host: "product-catalog-api-space-westus2.aks.run"
     http:
       paths:
       - path: "/"
