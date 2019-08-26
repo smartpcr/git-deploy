@@ -1,0 +1,62 @@
+config:
+subcomponents:
+
+  elasticsearch-fluentd-kibana:
+    subcomponents:
+      elasticsearch:
+        config:
+          client:
+            resources:
+              limits:
+                memory: "1024Mi"
+              requests:
+                cpu: 25m
+                memory: 256Mi
+          data:
+            persistence:
+              size: 10Gi
+
+  prometheus-operator:
+    config:
+      alertmanager:
+        ingress:
+          hosts:
+            - "alertmanager-space-westus2.aks.run"
+          tls:
+            - secretName: "sslcert-aks-run"
+              hosts:
+                - "alertmanager-space-westus2.aks.run"
+
+      prometheus:
+        ingress:
+          hosts:
+            - "prometheus-space-westus2.aks.run"
+          tls:
+            - secretName: "sslcert-aks-run"
+              hosts:
+                - "prometheus-space-westus2.aks.run"
+
+      grafana:
+        adminUser: "admin"
+        adminPassword: "grafana"
+        ingress:
+          hosts:
+            - "grafana-space-westus2.aks.run"
+          tls:
+            - secretName: "sslcert-aks-run"
+              hosts:
+                - "grafana-space-westus2.aks.run"
+
+  external-dns:
+    config:
+      acr:
+        name: sacebedrockacr
+      dns:
+        image:
+          name: external-dns
+          tag: 720306
+
+  nginx:
+    config:
+      aks:
+        fqdn: bedrock-lab-102dc1b5.hcp.westus2.azmk8s.io
